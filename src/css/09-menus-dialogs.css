@@ -1,0 +1,165 @@
+/* ---------- Menú contextual, visor, diálogos ---------- */
+#menu {
+  position: fixed;
+  display: none;
+  z-index: 70;
+  min-width: 210px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 4px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+#menu button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  border-radius: 2px;
+  padding: 7px 10px;
+  font-size: calc(13px * var(--ui));
+  cursor: pointer;
+}
+#menu button:hover {
+  background: var(--acc);
+  color: var(--acc-fg);
+}
+#menu .msep {
+  height: 1px;
+  background: var(--sidebar-border);
+  margin: 4px 2px;
+}
+.xbtn {
+  width: 24px; height: 24px; padding: 0; flex: none; cursor: pointer;
+  border-radius: 50%; border: 1px solid var(--border); background: none; color: inherit;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.xbtn:hover { background: var(--acc); color: var(--acc-fg); border-color: var(--acc); }
+.xbtn.on { background: var(--acc); color: var(--acc-fg); border-color: var(--acc); }
+.xbtn svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.4; stroke-linecap: round; }
+#lbx.xbtn { width: 34px; height: 34px; color: #fff; border: 1px solid rgba(255, 255, 255, 0.45); }
+#modal .box { position: relative; text-align: center; padding-top: 30px; }
+#modal .xbtn { position: absolute; top: 10px; right: 10px; }
+/* buscador del menú rápido */
+#menu .msearch {
+  display: flex; align-items: center; gap: 8px; margin: 2px 2px 6px; padding: 0 9px; height: 32px;
+  border: 1px solid var(--sidebar-border); border-radius: var(--r); background: var(--background);
+}
+#menu .msearch:focus-within { border-color: var(--acc); }
+#menu .msearch svg { width: 15px; height: 15px; flex: none; stroke: currentColor; fill: none; stroke-width: 2.2; stroke-linecap: round; opacity: 0.8; }
+#menu .msearch input { flex: 1; min-width: 0; border: 0; outline: 0; background: none; color: inherit; font: inherit; font-size: calc(13px * var(--ui)); padding: 0; margin: 0; }
+#world.searching .node:not(.found) { opacity: 0.3; transition: opacity 0.15s; }
+.node.found { outline: 2px solid var(--acc); outline-offset: 3px; }
+#lb {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 80;
+  overflow: hidden;
+}
+#lbimg {
+  max-width: 90vw;
+  max-height: 90vh;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-drag: none;
+  transform-origin: center;
+}
+#lbx {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-size: calc(22px * var(--ui));
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+#lbh {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #9aa7b6;
+  font-size: calc(12px * var(--ui));
+}
+#toast {
+  position: fixed;
+  left: 50%;
+  bottom: 34px;
+  transform: translateX(-50%);
+  background: var(--card);
+  border: 1px solid var(--acc);
+  padding: 8px 14px;
+  border-radius: var(--r);
+  font-size: calc(13px * var(--ui));
+  opacity: 0;
+  transition: opacity 0.25s;
+  z-index: 90;
+  pointer-events: none;
+}
+#toast.show {
+  opacity: 1;
+}
+#modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 85;
+}
+#modal .box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 22px;
+  width: 380px;
+}
+#modal p {
+  margin: 0 0 14px;
+  line-height: 1.45;
+}
+#modal input {
+  margin: 0 0 14px;
+}
+#modal .row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* menú de ordenar los chips de una paleta: se abre hacia arriba y se cierra al salir el ratón */
+#sortMenu {
+  position: fixed;
+  display: none;
+  z-index: 80;
+  min-width: 190px;
+  padding: 4px;
+  background: var(--float-bg, var(--card));
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  box-shadow: var(--float-shadow, 0 8px 20px rgba(0, 0, 0, 0.35));
+}
+#sortMenu.open { display: block; animation: ddIn 0.14s ease-out; }
+#sortMenu button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  border-radius: 2px;
+  padding: 7px 10px;
+  color: inherit;
+  font-size: calc(13px * var(--ui));
+  cursor: pointer;
+  white-space: nowrap;
+}
+#sortMenu button:hover { background: var(--acc); color: var(--acc-fg); }
+#sortMenu .msep { height: 1px; background: var(--sidebar-border); margin: 4px 2px; }

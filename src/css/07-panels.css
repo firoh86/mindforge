@@ -1,0 +1,196 @@
+/* ---------- Paneles laterales / flotantes ---------- */
+#insp {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 272px;
+  overflow-y: auto;
+  z-index: 30;
+}
+
+/* Pixel art inspector convertido en panel flotante libre (como la rueda de color) */
+#pxinsp {
+  position: fixed;
+  right: 20px;
+  top: 112px;
+  width: 280px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  z-index: 75;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  user-select: none;
+}
+#insp .phead {
+  cursor: move;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--sidebar-border);
+  margin-bottom: 10px;
+  user-select: none;
+}
+#pxinsp .phead {
+  cursor: move;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--sidebar-border);
+  margin-bottom: 10px;
+}
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 12px;
+  font-size: calc(12.5px * var(--ui));
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.12);
+}
+.panel[hidden] {
+  display: none !important;
+}
+.panel h4 {
+  margin: 0 0 8px;
+  font-size: calc(14px * var(--ui));
+}
+.panel h5 {
+  margin: 12px 0 6px;
+  font-size: calc(11px * var(--ui));
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+.panel label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted-foreground);
+}
+.panel label b {
+  float: right;
+  font-weight: 600;
+  color: var(--foreground);
+}
+.panel input[type="text"],
+.panel input[type="number"],
+.panel select,
+#fmt select,
+#fmt input[type="number"],
+#modal input {
+  width: 100%;
+  margin-top: 3px;
+  background: var(--background);
+  border: 1px solid var(--sidebar-border);
+  border-radius: var(--r);
+  padding: 5px 8px;
+}
+.panel input:focus,
+.panel select:focus,
+#fmt select:focus,
+#fmt input:focus,
+#modal input:focus {
+  outline: none;
+  border-color: var(--acc);
+}
+.panel input[type="range"] {
+  width: 100%;
+  margin: 4px 0 0;
+}
+input[type="range"],
+input[type="checkbox"] {
+  accent-color: var(--acc);
+}
+.panel .row {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+  align-items: center;
+}
+.panel .row .btn {
+  flex: 1;
+  min-width: 0;
+  height: 32px;
+  padding: 0 6px;
+  font-size: calc(12px * var(--ui));
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.panel .row .btn.sq {
+  flex: none;
+  width: 36px;
+  padding: 0;
+}
+.panel .row input[type="number"] {
+  margin: 0;
+}
+.panel input[type="color"] {
+  width: 40px;
+  height: 30px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  flex: none;
+}
+.panel .chk {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--foreground);
+}
+.panel .chk input {
+  margin: 0;
+}
+.hexin {
+  font-family: Consolas, monospace;
+  margin: 0 !important;
+}
+.tools {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+}
+.tools .btn {
+  height: 32px;
+  padding: 0 4px;
+  font-size: calc(12px * var(--ui));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+.swgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20px, 1fr));
+  gap: 3px;
+  margin-top: 6px;
+}
+.swgrid i {
+  aspect-ratio: 1;
+  border: 1px solid rgba(128, 138, 152, 0.45);
+  cursor: pointer;
+  display: block;
+}
+.swgrid i:hover {
+  outline: 2px solid var(--acc);
+  outline-offset: 1px;
+}
+.swgrid i.cur {
+  outline: 2px solid var(--foreground);
+  outline-offset: 1px;
+}
+
+/* Mis paletas del inspector de paleta */
+#pUserN { float: right; font-weight: 600; color: var(--foreground); letter-spacing: 0; }
+#pUserList { margin-top: 6px; display: flex; flex-direction: column; gap: 3px; max-height: 190px; overflow-y: auto; }
+.upal { display: flex; align-items: center; gap: 6px; padding: 3px 4px 3px 6px; border-radius: var(--r); cursor: pointer; border: 1px solid transparent; }
+.upal:hover { background: rgba(128, 138, 152, 0.18); border-color: var(--sidebar-border); }
+.upal .uc { display: flex; flex: none; width: 54px; height: 12px; border-radius: 3px; overflow: hidden; }
+.upal .uc i { flex: 1; min-width: 0; }
+.upal .un { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--foreground); }
+.upal .ux { flex: none; width: 20px; height: 20px; border: none; border-radius: 50%; background: none; color: inherit; opacity: 0.55; cursor: pointer; font-size: calc(14px * var(--ui)); line-height: 1; }
+.upal .ux:hover { opacity: 1; background: rgba(220, 60, 60, 0.85); color: #fff; }
+
+/* secciones desplegables del inspector de paleta */
+.panel h5.fold { cursor: pointer; user-select: none; display: flex; align-items: center; gap: 5px; }
+.panel h5.fold:hover { color: var(--foreground); }
+.panel h5.fold .car { display: inline-block; width: 10px; font-size: calc(12px * var(--ui)); transition: transform .15s; }
+.fsec.closed > h5.fold .car { transform: rotate(-90deg); }
+.fsec.closed > .fbody { display: none; }

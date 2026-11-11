@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MindForge</title>
+    <link rel="stylesheet" href="css/00-fonts.css">
+    <link rel="stylesheet" href="css/01-theme.css" />
+    <link rel="stylesheet" href="css/02-layout.css" />
+    <link rel="stylesheet" href="css/03-bar-dropdowns.css" />
+    <link rel="stylesheet" href="css/04-swatches.css" />
+    <link rel="stylesheet" href="css/05-canvas.css" />
+    <link rel="stylesheet" href="css/06-nodes.css" />
+    <link rel="stylesheet" href="css/07-panels.css" />
+    <link rel="stylesheet" href="css/08-format-bar.css" />
+    <link rel="stylesheet" href="css/09-menus-dialogs.css" />
+    <link rel="stylesheet" href="css/10-pixel.css" />
+    <link rel="stylesheet" href="css/11-crop.css" />
+    <link rel="stylesheet" href="css/12-wheel.css" />
+  </head>
+  <body>
+    <div id="app" class="dock-top">
+      <div id="bar">
+        <span
+          id="grip"
+          title="Arrastra hacia cualquier borde para mover la barra"
+          >⠿</span
+        >
+
+        <!-- BRAND / MARCA -->
+        <div class="brandrow">
+          <label
+            id="accBtn"
+            title="Cambiar el color de acento de la aplicación"
+          >
+            <svg viewBox="-5.1 8.1 410.2 410.2" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g transform="translate(0,400) scale(.1,-.1)" fill="currentColor" stroke="none"><path d="M2490 3293 c-41 -6 -221 -43 -285 -57 -33 -8 -114 -26 -180 -40 -66 -15 -149 -34 -185 -42 -36 -9 -92 -22 -125 -29 -33 -8 -91 -21 -130 -30 -99 -23 -129 -30 -310 -70 -88 -20 -178 -40 -200 -45 -22 -5 -80 -19 -130 -30 -49 -11 -108 -25 -130 -30 -22 -5 -71 -17 -110 -25 -80 -18 -237 -94 -316 -152 -136 -102 -249 -253 -307 -414 -40 -113 -54 -192 -54 -314 0 -116 15 -197 72 -389 26 -86 111 -222 196 -313 98 -104 269 -209 397 -243 42 -11 46 -14 30 -25 -10 -7 -51 -23 -92 -35 -58 -17 -89 -21 -140 -16 -227 20 -217 21 -275 -8 -128 -62 -187 -196 -149 -331 27 -93 115 -175 208 -191 16 -3 50 -10 75 -16 49 -11 238 -13 304 -3 139 21 311 91 451 183 89 58 257 226 316 317 78 120 96 150 103 172 5 16 22 26 61 37 85 25 90 24 112 -41 11 -32 42 -121 69 -198 26 -77 53 -149 59 -161 19 -37 59 -79 109 -113 42 -29 58 -34 130 -38 74 -5 87 -3 137 21 108 51 166 132 176 247 5 61 2 77 -57 248 -34 100 -60 185 -57 187 5 6 123 33 172 41 25 4 39 -4 90 -50 69 -62 204 -152 294 -196 248 -120 552 -145 801 -64 231 74 350 184 352 322 1 158 -111 284 -257 290 -62 2 -128 -13 -165 -38 -56 -38 -132 -62 -208 -66 -70 -3 -196 15 -211 30 -3 4 5 16 19 27 170 135 279 312 331 538 16 70 16 262 0 337 -22 102 -64 247 -78 270 -7 12 -13 26 -13 31 0 18 -70 127 -123 192 -54 66 -156 160 -174 160 -5 0 -18 9 -28 20 -10 11 -22 20 -28 20 -5 0 -21 8 -35 19 -32 23 -188 78 -257 92 -55 11 -215 19 -255 12z m225 -352 c55 -28 109 -78 133 -127 11 -22 28 -81 37 -130 9 -49 21 -109 25 -134 5 -25 16 -81 24 -125 57 -298 58 -346 9 -430 -72 -123 -219 -175 -358 -126 -128 45 -169 112 -209 341 -10 52 -21 113 -26 135 -5 22 -16 78 -25 125 -8 47 -20 108 -26 136 -6 28 -9 74 -5 103 15 123 86 203 226 255 31 12 155 -3 195 -23z m-1795 -432 c37 -12 93 -50 123 -84 32 -37 54 -89 92 -215 20 -69 59 -195 87 -280 39 -119 51 -170 51 -220 2 -214 -223 -354 -419 -261 -89 42 -127 94 -169 228 -30 98 -47 150 -129 409 -40 125 -37 210 9 289 72 125 214 178 355 134z m1361 -576 c41 -52 54 -89 54 -165 0 -69 -3 -80 -30 -119 -70 -100 -195 -134 -304 -84 l-52 24 -10 -27 c-15 -40 -74 -88 -124 -102 -140 -39 -267 36 -310 183 -22 75 -17 107 18 127 24 13 30 13 54 0 21 -12 29 -27 37 -70 21 -102 72 -142 160 -126 53 10 76 46 82 130 4 51 33 81 68 72 26 -6 31 -11 66 -57 25 -34 78 -59 123 -59 27 0 45 9 71 34 43 40 47 79 16 149 -15 34 -18 51 -11 70 15 39 67 50 92 20z"/></g></svg>
+            <input type="color" id="accIn" value="#f56565" />
+          </label>
+          <span class="brand">MindForge</span>
+        </div>
+        <input
+          id="boardTitle"
+          class="boardtitle"
+          type="text"
+          maxlength="80"
+          placeholder="Sin título"
+          spellcheck="false"
+          autocomplete="off"
+          title="Título del espacio de trabajo (clic para editar)"
+        />
+        <div class="bar-dropdown" id="dropWs">
+          <button class="btn bar-dropdown-btn" id="wsBtn" title="Espacios de trabajo recientes"></button>
+          <div class="bar-dropdown-menu" id="wsMenu">
+            <div class="bar-dropdown-title">Espacios de trabajo</div>
+            <button class="btn" id="wsNew"></button>
+            <button class="btn" id="wsOpen"></button>
+            <button class="btn" id="wsSave"></button>
+            <button class="btn" id="wsSaveAs"></button>
+            <button class="btn" id="wsAuto" data-keep aria-pressed="false"></button>
+            <div class="bar-dropdown-title">Recientes</div>
+            <div id="wsList"></div>
+          </div>
+        </div>
+        <div class="sep"></div>
+
+        <!-- COLORES -->
+        <div class="grp sws" id="swGrp">
+          <span id="swatches" class="grp sws"></span>
+          <button
+            class="btn"
+            id="swToggle"
+            title="Mostrar todas las muestras"
+            aria-expanded="false"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 6l6 6-6 6M13 6l6 6-6 6" />
+            </svg>
+          </button>
+        </div>
+        <!-- Muestras colapsadas en desplegable (solo barra horizontal sin espacio) -->
+        <div class="bar-dropdown drop-sw-grp" id="dropSw">
+          <button class="btn bar-dropdown-btn" id="swDdBtn" title="Muestras de color">
+            <span class="sw" id="swDot"></span>
+            <svg class="ic" viewBox="0 0 24 24" style="margin: 0"><path d="M6 9l6 6 6-6" /></svg>
+          </button>
+          <div class="bar-dropdown-menu">
+            <div class="bar-dropdown-title">Muestras</div>
+            <div id="swHost"></div>
+          </div>
+        </div>
+        <button class="btn ibtn" id="wheelBtn" title="Rueda de color" aria-label="Rueda de color"></button>
+
+        <div class="sp"></div>
+        <div id="barRight">
+
+        <!-- GRUPOS NORMALES (Visibles en pantallas grandes / Modo vertical) -->
+        <div class="grp" id="grpClear">
+          <button class="btn danger ibtn" id="clearBtn" title="Eliminar todos los nodos" aria-label="Eliminar todos los nodos"></button>
+          <button class="btn ibtn" id="zoomBtn" title="Zoom general: 100 % — clic para 125 %" aria-label="Zoom general" aria-pressed="false"></button>
+          <button class="btn ibtn langbtn" id="langBtn" title="Idioma / Language" aria-label="Idioma / Language"><span id="langTxt">EN</span></button>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="grp" id="grpTheme">
+          <button class="btn ibtn" id="themeBtn" title="Cambiar a modo claro" aria-label="Cambiar tema"></button>
+        </div>
+
+        <!-- DESPLEGABLES (Ocultos por defecto, visibles sólo cuando la pantalla es estrecha) -->
+        <div class="sep sep-h"></div>
+
+        <!-- ZOOM -->
+        <div class="grp zm">
+          <button class="btn" id="zOut" title="Alejar"></button><span id="zl">100%</span
+          ><button class="btn" id="zIn" title="Acercar"></button>
+        </div>
+        </div>
+      </div>
+
+      <div id="stage">
+        <div id="canvas">
+          <div id="world">
+            <svg id="edges" width="1" height="1">
+              <defs>
+                <marker
+                  id="arr"
+                  viewBox="0 0 10 10"
+                  refX="9"
+                  refY="5"
+                  markerUnits="userSpaceOnUse"
+                  markerWidth="14"
+                  markerHeight="14"
+                  orient="auto-start-reverse"
+                >
+                  <path d="M0 0 L10 5 L0 10 z" />
+                </marker>
+                <marker
+                  id="arrOn"
+                  viewBox="0 0 10 10"
+                  refX="9"
+                  refY="5"
+                  markerUnits="userSpaceOnUse"
+                  markerWidth="18"
+                  markerHeight="18"
+                  orient="auto-start-reverse"
+                >
+                  <path d="M0 0 L10 5 L0 10 z" />
+                </marker>
+                <marker id="arrL" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" /></marker>
+                <marker id="arrD" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" /></marker>
+              </defs>
+              <g id="edgeg"></g>
+              <path id="tmp" class="tmp" d="" />
+            </svg>
+          </div>
+          <div id="marq"></div>
+        </div>
+        <div id="histBar" role="img" aria-label="Historial de cambios">
+          <i id="hsRedo"></i><i id="hsDone"></i><i id="hsCur"></i>
+        </div>
+        <!-- nexo thickness: los límites del slider se definen en EDGE_W_MIN / EDGE_W_MAX (JS) -->
+        <div id="fabWrap">
+        <div id="fabcols">
+          <div class="fabcol">
+            <button class="btn on" id="snapBtn" title="Imán a la rejilla"></button>
+            <button class="btn" id="fitBtn" title="Centrar vista"></button>
+            <button class="btn" id="mmBtn" title="Minimapa"></button>
+            <button class="btn" id="expBtn" title="Exportar vista (PNG)"></button>
+          </div>
+          <div class="fabsep"></div>
+          <div class="fabcol">
+            <button class="btn" id="undoBtn" title="Deshacer (Ctrl+Z)"></button>
+            <button class="btn" id="redoBtn" title="Rehacer (Ctrl+Y)"></button>
+            <button class="btn" id="mainBtn" title="Ver principal"></button>
+            <button class="btn" id="avoidBtn" title="Esquivar nodos"></button>
+          </div>
+        </div>
+        <div id="fabw" title="Grosor de las flechas">
+          <input type="range" id="edgeW" step="0.05" aria-label="Grosor de las flechas" />
+        </div>
+        </div>
+        <div id="expMenu" hidden></div>
+        <div id="expCrop" hidden>
+          <div class="ecr"><i class="ech" data-c="nw"></i><i class="ech" data-c="n"></i><i class="ech" data-c="ne"></i><i class="ech" data-c="e"></i><i class="ech" data-c="se"></i><i class="ech" data-c="s"></i><i class="ech" data-c="sw"></i><i class="ech" data-c="w"></i></div>
+          <div class="ecbar"><span class="ecmsg">Arrastra para elegir la zona</span><span class="ecinfo"></span><button data-a="cancel">Cancelar</button><button data-a="ok" class="ecok">Continuar</button></div>
+        </div>
+        <div id="minimap" hidden aria-label="Minimapa">
+          <svg preserveAspectRatio="none"></svg>
+          <i class="mmh" data-c="nw"></i><i class="mmh" data-c="ne"></i><i class="mmh" data-c="sw"></i><i class="mmh" data-c="se"></i>
+        </div>
+        <button id="helpBtn" title="Ayuda" aria-expanded="false">?</button>
+        <div id="helpPanel" role="dialog" aria-label="Ayuda">
+          <div class="hsec"><h4 class="hfirst"><span data-i18n-html>Crear y editar</span><span class="hver"><b>RubiEdition</b> V1.0.0</span></h4>
+          <ul>
+            <li data-i18n-html><b>Clic derecho</b> (o pulsación larga en táctil) sobre el lienzo: añade globos, textos, comentarios, tareas, imágenes, paletas o pixel art. Sobre un elemento: editar, duplicar, orden y eliminar.</li>
+            <li data-i18n-html><b>Doble clic</b> edita el texto, amplía una imagen o pone texto a una conexión.</li>
+            <li data-i18n-html><b>Ctrl+V</b> pega imágenes o texto; el texto con enlaces añade un botón ↗.</li>
+          </ul></div>
+          <div class="hsec"><h4 data-i18n-html>Conectar y organizar</h4>
+          <ul>
+            <li data-i18n-html>Arrastra desde los <b>puntos laterales</b> de un elemento hasta otro para conectarlos.</li>
+            <li data-i18n-html>Las <b>esquinas</b> escalan (un globo no baja del tamaño de su texto). Arriba a la derecha tienes <b>Imán</b> (rejilla), <b>Centrar vista</b>, <b>Minimapa</b>, <b>Exportar vista</b>, <b>Deshacer</b>, <b>Rehacer</b>, <b>Ver principal</b> y <b>Esquivar nodos</b>.</li>
+            <li data-i18n-html><b>Grupos:</b> usa un cuadro de texto mandándolo atrás (clic derecho → Enviar al fondo) para usarlo como grupo: arrastra nodos encima y mantenlos ~1 s.</li>
+            <li data-i18n-html><b>Ctrl + clic</b> suma o quita elementos; <b>clic derecho + arrastrar</b> sobre el fondo selecciona con un recuadro.</li>
+            <li data-i18n-html><b>Modo organizar:</b> con más de un elemento seleccionado se cierran los menús, la rueda y los paneles, el pixel art no se edita y las imágenes no se amplían. Clic derecho ofrece solo acciones para el grupo. Sales al borrar, al deseleccionar o al pulsar la barra.</li>
+          </ul></div>
+          <div class="hsec"><h4 data-i18n-html>Moverse por el lienzo</h4>
+          <ul>
+            <li data-i18n-html>Arrastra el fondo para desplazar; <b>rueda</b> o pellizco para zoom.</li>
+            <li data-i18n-html><b>Espacio</b> centra la vista sobre los elementos seleccionados (como el botón Centrar vista).</li>
+            <li data-i18n-html><b>Minimapa:</b> clic en un punto para ir allí; arrástralo para moverlo y escálalo por las esquinas. <b>Exportar vista</b> guarda un PNG (×0,5, ×1 o ×1,5) del espacio completo o de un recorte.</li>
+            <li data-i18n-html><b>Esquivar nodos:</b> las flechas rodean los nodos que se interpongan (pueden cruzarse entre sí).</li>
+          </ul></div>
+          <div class="hsec"><h4 data-i18n-html>Color</h4>
+          <ul>
+            <li data-i18n-html>Elige una muestra para el elemento seleccionado (o el próximo). <b>Rueda de color</b> (en color de acento mientras está abierta) abre el selector avanzado. El botón » muestra todas las muestras.</li>
+            <li data-i18n-html><b>Shift + clic</b> sobre otro elemento o un chip de paleta copia su color y lo aplica a la selección de una vez.</li>
+            <li data-i18n-html>Clic derecho (o pulsación larga) en una muestra propia la elimina.</li>
+          </ul></div>
+          <div class="hsec"><h4 data-i18n-html>Pixel art</h4>
+          <ul>
+            <li data-i18n-html><b>Varita mágica</b> (W): un clic selecciona los píxeles contiguos del mismo color; <b>Shift + clic</b> suma otra zona. Arrastra la selección para moverla, <b>Ctrl+X</b> o <b>Supr</b> la borran y el clic derecho la quita.</li>
+          </ul></div>
+          <div class="hsec"><h4 data-i18n-html>Espacios de trabajo</h4>
+          <ul>
+            <li data-i18n-html>El botón junto al título abre los espacios recientes: cambia de tablero sin importar a mano, crea uno nuevo o abre un archivo. Cada cambio se guarda solo en la app.</li>
+            <li data-i18n-html><b>Guardar</b> (Ctrl+S) escribe el espacio en su archivo; <b>Guardar como…</b> elige otro. Con <b>Autoguardado</b> activo (en color de acento) el archivo se sobrescribe solo en cada cambio, siempre que haya al menos un nodo. Al abrir un espacio vinculado se comprueba el archivo y se avisa si se movió o borró.</li>
+          </ul></div>
+          <div class="hsec"><h4 data-i18n-html>Atajos</h4>
+          <ul>
+            <li data-i18n-html><b>Tab</b> crea un nodo hijo conectado · <b>Ctrl+Enter</b> un hermano (mismo padre) · <b>Mayús+Tab</b> sube al padre · <b>Enter</b>, <b>F2</b> o doble clic edita. Editando: <b>Tab</b> hijo, <b>Ctrl+Enter</b> hermano.</li>
+            <li data-i18n-html><b>/</b> o el botón de la esquina pliega / despliega la rama: oculta todo lo que cuelga del nodo y muestra cuántos quedan ocultos (+N). Una rama plegada se mueve entera.</li>
+            <li data-i18n-html><b>Ctrl+Z / Ctrl+Y</b> deshacer / rehacer · <b>Ctrl+D</b> duplicar · <b>Supr</b> eliminar · <b>Esc</b> cierra paneles.</li>
+            <li data-i18n-html>La barra se acopla arrastrando el asa ⠿. Todo se guarda solo; <b>Exportar / Importar</b> están en Archivo.</li>
+          </ul></div>
+        </div>
+        <div id="foot" title="Clic para copiar">firohh.as@gmail.com</div>
+
+        <div id="cropbar" hidden>
+          <span
+            >Recortar: mueve las esquinas · Intro = aplicar · Esc =
+            cancelar</span
+          ><button class="btn on" id="cropOk">✓ Aplicar</button
+          ><button class="btn" id="cropNo">✕ Cancelar</button>
+        </div>
+
+        <div id="fmt" hidden>
+          <select id="fFont" title="Fuente"></select>
+          <input
+            id="fSize"
+            type="number"
+            min="8"
+            max="120"
+            step="1"
+            title="Tamaño de letra (px)"
+          />
+          <button class="btn" id="fB" title="Negrita (Ctrl+B)"><b>B</b></button>
+          <button class="btn" id="fI" title="Cursiva (Ctrl+I)"><i>I</i></button>
+          <button class="btn" id="fU" title="Subrayado (Ctrl+U)">
+            <u>U</u>
+          </button>
+        </div>
+
+        <div id="insp" class="panel" hidden>
+          <div
+            class="phead"
+            id="inspHead"
+          >
+            <h4 title="Carga paletas de color o genera una en base a los controles de armonía.">Paleta de color</h4>
+            <div class="pbtns">
+              <button class="xbtn" id="pInfo" aria-label="Ayuda del menú de paleta"><svg viewBox="0 0 24 24"><path d="M12 11v6"/><path d="M12 7.2v.1"/></svg></button>
+            </div>
+          </div>
+          <label
+            >Título<input id="pTitle" type="text" maxlength="40"
+          /></label>
+
+          <div class="fsec" data-sec="create"><h5 class="fold"><span class="car">▾</span>Crear paleta</h5><div class="fbody">
+          <label
+            title="Carga una paleta desde la biblioteca. Sustituye los colores actuales del nodo."
+            >Biblioteca de paletas
+            <select id="pLib"></select
+          ></label>
+          <label
+            title="Regla matemática con la que se calculan los colores a partir del matiz base (análogos, tríada, degradado, etc.)."
+            >Armonías
+            <select id="pMode">
+              <option value="analog">Análogos</option>
+              <option value="mono">Monocromática</option>
+              <option value="comp">Complementarios</option>
+              <option value="triad">Tríada</option>
+              <option value="tetrad">Tétrada</option>
+              <option value="split">Complementario dividido</option>
+              <option value="grad">Degradado</option>
+              <option value="rainbow">Arcoíris</option>
+              <option value="pastel">Pastel</option>
+            </select></label
+          >
+          <label
+            title="Color de partida de la armonía, de 0° a 360° (rojo → amarillo → verde → cian → azul → magenta). Regenera la paleta."
+            >Matiz base <b>0</b
+            ><input id="pH" type="range" min="0" max="360" value="210"
+          /></label>
+          <label
+            title="Intensidad del color base, de 0 (gris) a 100 (color puro). Regenera la paleta."
+            >Saturación <b>0</b
+            ><input id="pS" type="range" min="0" max="100" value="70"
+          /></label>
+          <label
+            title="Luminosidad del color base, de 0 (negro) a 100 (blanco). Regenera la paleta."
+            >Luminosidad <b>0</b
+            ><input id="pL" type="range" min="0" max="100" value="55"
+          /></label>
+          <label
+            title="Cantidad de colores de la paleta, de 2 a 50. Regenera la paleta."
+            >Nº de colores (máx. 50) <b>0</b
+            ><input id="pN" type="range" min="2" max="50" value="5"
+          /></label>
+          <div class="row">
+            <button
+              class="btn"
+              id="pGen"
+              title="Vuelve a generar la paleta con los valores de arriba. Descarta los cambios manuales y los ajustes."
+            >
+              ↻ Regenerar
+            </button>
+          </div>
+
+          </div></div>
+
+          <div class="fsec" data-sec="adjust"><h5 class="fold"><span class="car">▾</span>Ajustar paleta actual</h5><div class="fbody">
+          <label
+            title="Desplaza el tono de todos los colores a la vez (-180° a +180°). Funciona con cualquier paleta. Al soltar se confirma y el slider vuelve a 0."
+            >Tono <b>0</b
+            ><input id="dH" type="range" min="-180" max="180" value="0"
+          /></label>
+          <label
+            title="Sube o baja la saturación de todos los colores a la vez (-100 a +100). Al soltar se confirma y el slider vuelve a 0."
+            >Saturación <b>0</b
+            ><input id="dS" type="range" min="-100" max="100" value="0"
+          /></label>
+          <label
+            title="Aclara u oscurece todos los colores a la vez (-50 a +50). Al soltar se confirma y el slider vuelve a 0."
+            >Luminosidad <b>0</b
+            ><input id="dL" type="range" min="-50" max="50" value="0"
+          /></label>
+
+          </div></div>
+
+          <div class="fsec" data-sec="file"><h5 class="fold"><span class="car">▾</span>Archivo</h5><div class="fbody">
+          <div class="row">
+            <button class="btn" id="pExpGpl" title="Exporta la paleta como .gpl (GIMP / Aseprite y otros programas de pixel art). Pregunta dónde guardarla.">Exportar .gpl</button>
+            <button class="btn" id="pImpGpl" title="Sustituye los colores de esta paleta por los de un archivo .gpl. No se guarda en la biblioteca.">Importar .gpl</button>
+          </div>
+          <div class="row">
+            <label style="flex: 1; margin: 0" title="Lado de cada muestra en el PNG. 1 px = una imagen con un píxel por color, la que leen Aseprite y otros programas de pixel art.">Muestra
+              <select id="pPngS">
+                <option value="1">1 px (indexable)</option>
+                <option value="8">8 px</option>
+                <option value="16">16 px</option>
+                <option value="32">32 px</option>
+                <option value="64">64 px</option>
+              </select></label>
+            <label style="flex: 1; margin: 0" title="Cómo se colocan las muestras en la imagen.">Disposición
+              <select id="pPngL">
+                <option value="strip">Tira (1 fila)</option>
+                <option value="grid">Cuadrícula (8 por fila)</option>
+              </select></label>
+          </div>
+          <div class="row">
+            <button class="btn" id="pExpPng" title="Exporta la paleta como imagen PNG. Pregunta dónde guardarla.">Exportar PNG</button>
+          </div>
+
+          </div></div>
+
+          <h5>Mis paletas <span id="pUserN">0/10</span></h5>
+          <div class="row">
+            <button class="btn" id="pSave" title="Guarda esta paleta en la biblioteca de MindForge (máximo 10 paletas propias). Pide confirmación.">Guardar paleta actual</button>
+          </div>
+          <div id="pUserList"></div>
+        </div>
+
+        <!-- Menú Inspector de Pixel Art flotante libre -->
+        <div id="pxinsp" class="panel" hidden>
+          <div class="phead">
+            <h4>Pixel art</h4>
+            <div class="pbtns">
+              <button class="xbtn" id="xInfo" aria-label="Herramientas del nodo"><svg viewBox="0 0 24 24"><path d="M12 11v6"/><path d="M12 7.2v.1"/></svg></button>
+              <button class="xbtn" id="xKeys" title="Atajos de teclado"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg></button>
+            </div>
+          </div>
+          <label>Título<input id="xTitle" type="text" maxlength="40" /></label>
+          <h5>Lienzo</h5>
+          <div class="row">
+            <input
+              id="xW"
+              type="number"
+              min="1"
+              max="256"
+              title="Ancho (px)"
+            /><span>×</span
+            ><input
+              id="xH"
+              type="number"
+              min="1"
+              max="256"
+              title="Alto (px)"
+            /><button class="btn" id="xApply" style="min-width: 80px">
+              Aplicar
+            </button>
+          </div>
+          <div class="row">
+            <button class="btn" data-sz="8">8×8</button
+            ><button class="btn" data-sz="16">16×16</button
+            ><button class="btn" data-sz="32">32×32</button>
+          </div>
+          <h5>Color</h5>
+          <select id="xLib"></select>
+          <div class="swgrid" id="xSw"></div>
+          <h5>Recientes</h5>
+          <div class="swgrid" id="xRecent"></div>
+          <h5>Capas</h5>
+          <label class="chk"
+            ><input type="checkbox" id="xBgOn" /> Capa 1 · mostrar fondo (no se
+            exporta)</label
+          >
+          <div class="row">
+            <input type="color" id="xBgCol" /><button class="btn" id="xBgFill">
+              Fondo = color actual
+            </button>
+          </div>
+          <div class="row">
+            <button class="btn" id="xClear">Limpiar capa de dibujo</button>
+          </div>
+          <h5>Exportar PNG</h5>
+          <div class="row" id="xScale">
+            <button class="btn" data-s="1">x1</button
+            ><button class="btn" data-s="8">x8</button
+            ><button class="btn" data-s="32">x32</button>
+          </div>
+          <div class="row">
+            <button class="btn on" id="xExport">⭳ Exportar PNG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="wheel">
+      <div class="wh">
+        <span>Rueda de color</span
+        ><button class="xbtn" id="wClose" title="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <div class="wb">
+        <div class="wtop">
+          <div id="wprev"></div>
+          <div class="wsl">
+            <div class="wrow">
+              <label>H</label
+              ><input
+                type="range"
+                id="wH"
+                class="gr hue"
+                min="0"
+                max="360"
+              /><input type="number" id="wHn" min="0" max="360" /><span>°</span>
+            </div>
+            <div class="wrow">
+              <label>S</label
+              ><input type="range" id="wS" class="gr" min="0" max="100" /><input
+                type="number"
+                id="wSn"
+                min="0"
+                max="100"
+              /><span>%</span>
+            </div>
+            <div class="wrow">
+              <label>B</label
+              ><input type="range" id="wB" class="gr" min="0" max="100" /><input
+                type="number"
+                id="wBn"
+                min="0"
+                max="100"
+              /><span>%</span>
+            </div>
+          </div>
+        </div>
+        <canvas id="wcv" width="240" height="240"></canvas>
+        <div class="wrow">
+          <input type="text" id="wHex" class="hexin" maxlength="7" /><button
+            class="btn"
+            id="wBar"
+            title="Añadir a la barra"
+          >
+            ＋
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="keys" class="panel" hidden>
+      <div class="phead"><h4>Atajos · Pixel art</h4><button class="xbtn" id="kClose" title="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+      <div id="keyrows"></div>
+      <div class="row">
+        <button class="btn" id="kReset">Restablecer</button
+        ><button class="btn on" id="kOk">Aceptar</button>
+      </div>
+    </div>
+    <div id="pxTip" role="tooltip" hidden>
+      <h5 data-i18n-html>Dibujo</h5>
+      <ul>
+        <li data-i18n-html><b>Lápiz</b> <span class="tk" data-k="pencil"></span>: pinta con el color activo; arrastra para trazar. Clic derecho = borrar. Con una selección, solo pinta dentro de ella.</li>
+        <li data-i18n-html><b>Goma</b> <span class="tk" data-k="eraser"></span>: deja los píxeles transparentes. También respeta la selección.</li>
+        <li data-i18n-html><b>Cubo</b> <span class="tk" data-k="bucket"></span>: rellena la zona contigua del mismo color con el color activo (dentro de la selección, si la hay).</li>
+      </ul>
+      <hr />
+      <h5 data-i18n-html>Selección</h5>
+      <ul>
+        <li data-i18n-html><b>Cuadrado</b> <span class="tk" data-k="marquee"></span>: arrastra para seleccionar un recuadro.</li>
+        <li data-i18n-html><b>Lazo</b> <span class="tk" data-k="lasso"></span>: dibuja un contorno a mano alzada y selecciona lo que encierra.</li>
+        <li data-i18n-html><b>Varita mágica</b> <span class="tk" data-k="wand"></span>: un clic selecciona los píxeles contiguos del mismo color; <b>Shift + clic</b> suma otra zona.</li>
+        <li data-i18n-html><b>Selección:</b> arrástrala para moverla; <b>Ctrl+X</b> o <b>Supr</b> borran su contenido; clic derecho (con varita o lazo) o <b>Esc</b> la quitan. Se mantiene al cambiar de herramienta o de nodo.</li>
+      </ul>
+      <hr />
+      <h5 data-i18n-html>Cuentagotas</h5>
+      <ul>
+        <li data-i18n-html><b>Cuentagotas</b> <span class="tk" data-k="picker"></span>: toma el color de un píxel y lo pone como color activo.</li>
+      </ul>
+      <hr />
+      <h5 data-i18n-html>Punta, transparencia y tile</h5>
+      <ul>
+        <li data-i18n-html><b>Punta</b> (junto al tamaño): un botón que alterna entre punta <b>circular</b> (por defecto) y <b>cuadrada</b> para lápiz y goma, tamaños 1–10. Al pasar el ratón por la cuadrícula se ve el contorno de la punta. <b>Ctrl + rueda</b> cambia el tamaño.</li>
+        <li data-i18n-html><b>Bolita de fondo:</b> alterna el fondo de la cuadrícula entre sólido y translúcido (40 %) para calcar sobre otros elementos; el cabecero y el pie no cambian.</li>
+        <li data-i18n-html><b>Tile</b> (4 cuadraditos): muestra 8 píxeles repetidos alrededor del lienzo, con degradado. Se desactiva al perder el foco el nodo.</li>
+      </ul>
+      <hr />
+      <h5 data-i18n-html>Información extra</h5>
+      <ul>
+        <li data-i18n-html><b>Botón central</b> + arrastrar: desplaza todos los píxeles con envoltura, como un tile.</li>
+        <li data-i18n-html><b>Doble clic derecho</b> con cuadrado, lazo o varita: selecciona todo el lienzo. El primer clic sobre un nodo inactivo solo lo activa.</li>
+      </ul>
+    </div>
+    <div id="grpTip" role="tooltip" hidden>
+      <h5 data-i18n-html>Crear un grupo</h5>
+      <ul>
+        <li data-i18n-html><b>Cuadro de grupo:</b> envía un cuadro de texto al fondo (clic derecho → Enviar al fondo) para usarlo como grupo. <b>Un nodo:</b> arrástralo hasta que su centro quede dentro del cuadro y mantenlo ~1 s; el cuadro late y el nodo entra en el grupo.</li>
+        <li data-i18n-html><b>Varios nodos:</b> selecciónalos y haz lo mismo: entran todos los que estén dentro del cuadro.</li>
+        <li data-i18n-html><b>Cuadro enviado atrás:</b> arrastra un cuadro hasta cubrir varios nodos y mantenlo ~1 s: los atrapa a todos. Un nodo solo pertenece a un grupo.</li>
+      </ul>
+      <hr />
+      <h5 data-i18n-html>Nodos del grupo</h5>
+      <ul>
+        <li data-i18n-html><b>Candado:</b> los nodos del grupo muestran un candado arriba a la izquierda. Se pueden activar con un clic, pero no moverse solos.</li>
+        <li data-i18n-html><b>Siempre encima:</b> un nodo del grupo nunca queda por detrás de su cuadro.</li>
+        <li data-i18n-html><b>Liberar:</b> clic en el candado, o mantén pulsado el nodo ~1 s. Con varios seleccionados se liberan todos los bloqueados. Soltar un nodo fuera del cuadro también lo libera. Al redimensionar el cuadro, los nodos que queden fuera se liberan.</li>
+      </ul>
+      <hr />
+      <h5 data-i18n-html>Mover y plegar</h5>
+      <ul>
+        <li data-i18n-html><b>Mover:</b> al arrastrar el cuadro viajan con él todos los nodos del grupo.</li>
+        <li data-i18n-html><b>Contraer:</b> el botón ⌄ del cuadro (o clic derecho → Contraer grupo) oculta los nodos del grupo y deja el cuadro del ancho de su nombre, con un candado que indica cuántos nodos lleva dentro. Se expande con la misma flecha.</li>
+        <li data-i18n-html><b>Plegar:</b> al plegar la rama del padre del cuadro se oculta todo: el cuadro, sus nodos y lo que cuelga de ellos. El botón de plegado del propio cuadro solo oculta las conexiones que salen de él, nunca sus nodos.</li>
+        <li data-i18n-html><b>Conexiones:</b> un cuadro no se conecta con flechas a los nodos que tiene dentro.</li>
+      </ul>
+      <hr />
+      <h5 data-i18n-html>Eliminar y nombre</h5>
+      <ul>
+        <li data-i18n-html><b>Eliminar el cuadro:</b> pregunta si quieres eliminar todo el grupo o solo el cuadro (los nodos quedan libres).</li>
+        <li data-i18n-html><b>Nombre:</b> un cuadro con grupo solo admite una línea corta de texto, el nombre del grupo (máx. 60 caracteres).</li>
+      </ul>
+    </div>
+    <div id="palTip" role="tooltip" hidden>
+      <h5>Crear paleta</h5>
+      <ul>
+        <li data-i18n-html><b>Biblioteca:</b> sustituye los colores por una paleta incluida o de <b>Mis paletas</b>.</li>
+        <li data-i18n-html><b>Armonía, matiz, saturación, luminosidad y nº de colores:</b> generan la paleta con una regla de color. <b>Regenerar</b> la recalcula y descarta los cambios manuales.</li>
+      </ul>
+      <hr />
+      <h5>Ajustar paleta actual</h5>
+      <ul>
+        <li data-i18n-html><b>Tono, saturación y luminosidad:</b> desplazan todos los colores a la vez; al soltar se confirma y el control vuelve a 0.</li>
+      </ul>
+      <hr />
+      <h5>Archivo</h5>
+      <ul>
+        <li data-i18n-html><b>.gpl:</b> exporta o importa la paleta (GIMP, Aseprite…). Importar solo sustituye la paleta actual.</li>
+        <li data-i18n-html><b>PNG:</b> una imagen con las muestras; con <b>1 px</b> sale un píxel por color (paleta indexable).</li>
+      </ul>
+      <hr />
+      <h5>Mis paletas</h5>
+      <ul>
+        <li data-i18n-html>Hasta 10 paletas propias en la biblioteca de MindForge: <b>Guardar</b> (con confirmación), clic para cargar, <b>×</b> para eliminar.</li>
+      </ul>
+      <hr />
+      <h5>En el nodo</h5>
+      <ul>
+        <li data-i18n-html><b>Cabecera</b> (con el nodo activo): vista (su icono anuncia la siguiente), paleta aleatoria, <b>−</b> elimina el último color y <b>＋</b> añade uno.</li>
+        <li data-i18n-html><b>Chips:</b> clic = color activo y copia el HEX; <b>doble clic</b> = a la barra de colores; <b>Shift + clic</b> = aplica el color a los demás nodos seleccionados; <b>arrastrar</b> sobre otro = intercambiar posiciones; <b>×</b> = quitar.</li>
+      </ul>
+    </div>
+    <div id="dockzone"></div>
+    <div id="menu"></div>
+    <div id="lb">
+      <button id="lbx" class="xbtn" title="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button><img id="lbimg" draggable="false" />
+      <div id="lbh">Rueda: zoom · Arrastra: mover · Esc: cerrar</div>
+    </div>
+    <div id="toast"></div>
+    <div id="modal">
+      <div class="box">
+        <p id="mtxt"></p>
+        <input id="minp" type="text" />
+        <button class="xbtn" id="mNo" title="Cancelar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        <div class="row">
+          <button class="btn" id="mAlt" style="display: none"></button>
+          <button class="btn danger" id="mYes">Aceptar</button>
+        </div>
+      </div>
+    </div>
+    <input type="file" id="gplIn" accept=".gpl,.txt,text/plain" style="display: none" />
+    <input type="file" id="fileIn" accept=".json" style="display: none" />
+    <input
+      type="file"
+      id="imgIn"
+      accept="image/*"
+      multiple
+      style="display: none"
+    />
+    <script src="js/00-i18n.js"></script>
+    <script src="js/01-state.js"></script>
+    <script src="js/02-color.js"></script>
+    <script src="js/03-history.js"></script>
+    <script src="js/04-ui-utils.js"></script>
+    <script src="js/05-view.js"></script>
+    <script src="js/06-links.js"></script>
+    <script src="js/07-render.js"></script>
+    <script src="js/08-edges.js"></script>
+    <script src="js/08a-tree.js"></script>
+    <script src="js/08b-groups.js"></script>
+    <script src="js/09-edge-thickness.js"></script>
+    <script src="js/10-create-delete.js"></script>
+    <script src="js/11-images.js"></script>
+    <script src="js/12-text-edit.js"></script>
+    <script src="js/12a-subtasks.js"></script>
+    <script src="js/13-pixel-art.js"></script>
+    <script src="js/14-pointer.js"></script>
+    <script src="js/15-context-menu.js"></script>
+    <script src="js/16-bar-color.js"></script>
+    <script src="js/17-text-format.js"></script>
+    <script src="js/18-palette-inspector.js"></script>
+    <script src="js/18a-palette-files.js"></script>
+    <script src="js/19-pixel-inspector.js"></script>
+    <script src="js/20-eyedropper.js"></script>
+    <script src="js/21-keyboard.js"></script>
+    <script src="js/22-dock-theme.js"></script>
+    <script src="js/22a-ui-zoom.js"></script>
+    <script src="js/23-import-export.js"></script>
+    <script src="js/24-workspaces.js"></script>
+    <script src="js/25-buttons.js"></script>
+    <script src="js/26-float-panels.js"></script>
+    <script src="js/27-quick-pick.js"></script>
+    <script src="js/28-panel-bounds.js"></script>
+    <script src="js/29-color-wheel.js"></script>
+    <script src="js/30-crop-visual.js"></script>
+    <script src="js/31-pixel-tools.js"></script>
+    <script src="js/32-menu-scroll.js"></script>
+    <script src="js/33-bar-responsive.js"></script>
+    <script src="js/33a-minimap.js"></script>
+    <script src="js/33b-export-view.js"></script>
+    <script src="js/34-init.js"></script>
+    <script src="js/35-icons-help-touch.js"></script>
+  </body>
+</html>

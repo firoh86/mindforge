@@ -1,0 +1,85 @@
+/* ---------- Lienzo ---------- */
+#canvas {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+  background-color: var(--background);
+  background-image: radial-gradient(
+    circle,
+    var(--dot) 1.3px,
+    transparent 1.8px
+  );
+}
+#canvas.panning {
+  cursor: grabbing;
+}
+#world {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  --iz: 1;
+}
+/* Capas: nodos enviados al fondo (0) < flechas (1) < resto de nodos (2) */
+#world > .node { z-index: 2; }
+#world > .node.back { z-index: 0; }
+#edges {
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+.edge {
+  fill: none;
+  stroke: var(--edge);
+  stroke-width: calc(var(--ew, 2) * 1px);
+  pointer-events: none;
+}
+.edge.on {
+  stroke: var(--acc);
+  stroke-width: calc(var(--ew, 2) * 1px + 1px);
+}
+.edge.dash { stroke-dasharray: calc(var(--ew, 2) * 3px) calc(var(--ew, 2) * 2.5px); }
+.ebal { fill: var(--edge); stroke: none; pointer-events: none; }
+#arrL path { fill: #e5e7eb; }
+#arrD path { fill: #1f2937; }
+#arr path {
+  fill: var(--edge);
+}
+#arrOn path {
+  fill: var(--acc);
+}
+.hit {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 16;
+  pointer-events: stroke;
+  cursor: pointer;
+}
+.tmp {
+  fill: none;
+  stroke: var(--acc);
+  stroke-width: 2;
+  stroke-dasharray: 6 5;
+  pointer-events: none;
+}
+.tmp.dots { stroke-dasharray: 0.1 7; stroke-linecap: round; stroke-width: 3; }
+.elab {
+  fill: var(--foreground);
+  font-size: calc(10px + var(--ew, 2) * 2px); /* escala con el grosor de las flechas: 12 px (mín.) … 18 px (máx.) */
+  font-family: var(--font-ui);
+  text-anchor: middle;
+  dominant-baseline: middle;
+  stroke: none;
+  pointer-events: all;
+  cursor: pointer;
+}
+.elabbg {
+  fill: var(--background);
+  pointer-events: all;
+  cursor: pointer;
+}

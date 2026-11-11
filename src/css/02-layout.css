@@ -1,0 +1,355 @@
+      /* ---------- Layout con barra acoplable ---------- */
+      #app {
+        position: absolute;
+        inset: 0;
+        display: flex;
+      }
+      #app.dock-top {
+        flex-direction: column;
+      }
+      #app.dock-bottom {
+        flex-direction: column-reverse;
+      }
+      #app.dock-left {
+        flex-direction: row;
+      }
+      #app.dock-right {
+        flex-direction: row-reverse;
+      }
+      #stage {
+        position: relative;
+        flex: 1;
+        min-width: 0;
+        min-height: 0;
+      }
+      #bar {
+        flex: none;
+        background: var(--sidebar);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px 8px;
+        padding: 8px 10px;
+        min-height: 52px;
+        z-index: 60; /* por encima de los paneles flotantes: así sus desplegables nunca quedan tapados */
+        user-select: none;
+      }
+      .dock-top #bar {
+        border-bottom: 1px solid var(--sidebar-border);
+      }
+      .dock-bottom #bar {
+        border-top: 1px solid var(--sidebar-border);
+      }
+      .dock-left #bar {
+        border-right: 1px solid var(--sidebar-border);
+      }
+      .dock-right #bar {
+        border-left: 1px solid var(--sidebar-border);
+      }
+      #bar.v {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        width: var(--bar-w);
+        overflow-y: auto;
+        min-height: 0;
+      }
+      #grip {
+        cursor: grab;
+        color: var(--muted-foreground);
+        font-size: calc(18px * var(--ui));
+        padding: 0 4px;
+        line-height: 1;
+      }
+      #grip:hover {
+        color: var(--acc);
+      }
+      .brandrow {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      #accBtn svg {
+        pointer-events: none;
+      }
+      #accBtn {
+        position: relative;
+        display: inline-block;
+        background: none;
+        border: none;
+        padding: 2px;
+        cursor: pointer;
+        color: var(--acc);
+        line-height: 0;
+        border-radius: var(--r);
+        margin: -4px 0; /* el icono (37 px) sobresale un poco sin hacer más alta la barra */
+      }
+      #accBtn:hover {
+        background: color-mix(in srgb, var(--acc) 16%, transparent);
+      }
+      #accBtn svg {
+        width: 37px;
+        height: 37px;
+        display: block;
+      }
+      .brand {
+        color: var(--acc); /* el nombre sigue el color de acento */
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .boardtitle {
+        background: transparent;
+        border: 1px solid transparent;
+        color: var(--foreground);
+        font: inherit;
+        font-weight: 600;
+        padding: 3px 8px;
+        border-radius: var(--r);
+        outline: none;
+        min-width: 8ch;
+        max-width: 40ch;
+        cursor: text;
+        text-overflow: ellipsis;
+        user-select: text;
+        -webkit-user-select: text;
+      }
+      .boardtitle:hover {
+        border-color: var(--sidebar-border);
+      }
+      .boardtitle:focus {
+        border-color: var(--acc);
+        background: var(--background);
+      }
+      .boardtitle::placeholder {
+        color: var(--muted-foreground);
+        font-weight: 400;
+      }
+      #bar.v .boardtitle {
+        width: 100% !important;
+        max-width: none;
+      }
+      #accIn {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        padding: 0;
+        border: none;
+        cursor: pointer;
+      }
+      .grp {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        align-items: center;
+      }
+      #bar.v .grp {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      #bar.v .grp.sws,
+      #bar.v .grp.zm {
+        flex-direction: row;
+      }
+      .sep {
+        width: 1px;
+        height: 26px;
+        background: var(--sidebar-border);
+        margin: 0 2px;
+      }
+      #bar.v .sep {
+        width: auto;
+        height: 1px;
+        margin: 2px 0;
+      }
+      .sp {
+        flex: 1;
+      }
+      #bar.v .sp {
+        display: none;
+      }
+
+      .btn {
+        background: var(--muted);
+        border: 1px solid var(--sidebar-border);
+        border-radius: var(--r);
+        padding: 5px 10px;
+        font-size: calc(13px * var(--ui));
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      #bar.v .btn {
+        text-align: left;
+      }
+      .btn:hover {
+        border-color: var(--acc);
+        background: color-mix(in srgb, var(--acc) 16%, var(--muted));
+      }
+      .btn.on {
+        background: var(--acc);
+        border-color: var(--acc);
+        color: var(--acc-fg);
+      }
+      /* Botones solo con icono: cuadrados y fáciles de pulsar */
+      .ibtn {
+        box-sizing: border-box; width: 36px; min-width: 36px; height: 32px; padding: 0; flex: none;
+        display: inline-flex; align-items: center; justify-content: center;
+      }
+      .ibtn .ic { width: 18px; height: 18px; margin: 0; vertical-align: 0; }
+      #bar.v .ibtn { width: 100%; }
+      /* Selector de idioma: un solo botón que intercambia EN <-> ES (gira al pulsar) */
+      .langbtn { font-weight: 700; font-size: calc(12px * var(--ui)); letter-spacing: .4px; perspective: 120px; }
+      .langbtn span { display: inline-block; }
+      /* Botón de tema: muestra el aspecto del modo al que cambiará */
+      #themeBtn {
+        background: #262626;
+        color: #dcdcdc;
+        border-color: #4f4f4f;
+      }
+      html.dark #themeBtn {
+        background: #f4f4f4;
+        color: #3a3a3a;
+        border-color: #c0c0c0;
+      }
+      #themeBtn:hover {
+        border-color: var(--acc);
+        filter: brightness(0.94);
+      }
+      .btn.danger:hover {
+        border-color: var(--destructive);
+        background: color-mix(in srgb, var(--destructive) 20%, var(--muted));
+      }
+      .sw {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid var(--sidebar-border);
+        cursor: pointer;
+        padding: 0;
+      }
+      .sw:hover {
+        border-color: var(--acc);
+      }
+      .sw.act {
+        border-color: var(--acc);
+        box-shadow: 0 0 0 2px var(--acc);
+      }
+      .sw.none {
+        background: repeating-linear-gradient(
+          45deg,
+          var(--sidebar-border) 0 4px,
+          var(--sidebar) 4px 8px
+        );
+      }
+      .sw.auto {
+        background: var(--card);
+        border-color: var(--border);
+      }
+      /* chip «borde»: círculo transparente cuyo aro interior muestra el color del borde */
+      .sw.outline {
+        position: relative;
+        background: transparent;
+      }
+      .sw.outline::after {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        border-radius: 50%;
+        border: 2px solid var(--swb, var(--foreground));
+        pointer-events: none;
+      }
+      #cust {
+        width: 26px;
+        height: 26px;
+        border: none;
+        background: none;
+        padding: 0;
+        cursor: pointer;
+      }
+/* Zoom: − y + idénticos; en vertical ocupan todo el ancho */
+#bar .grp.zm { flex-wrap: nowrap; }
+#bar #zOut, #bar #zIn {
+  box-sizing: border-box; width: 36px; min-width: 36px; height: 32px; padding: 0; flex: none;
+  display: inline-flex; align-items: center; justify-content: center; text-align: center;
+}
+#bar.v .grp.zm { width: 100%; flex-wrap: wrap; }
+#bar.v #zOut, #bar.v #zIn { flex: 1 1 0; width: auto; min-width: 0; }
+#bar.v #zl { flex: 1.4 1 0; min-width: 0; }
+      #barRight { display: flex; align-items: center; gap: 6px; margin-left: auto; flex: none; }
+      #bar.v #barRight { display: contents; }
+      #zl {
+        min-width: 56px;
+        text-align: center;
+        font-size: calc(14px * var(--ui));
+        font-weight: 600;
+        color: var(--foreground);
+      }
+      #zOut .ic, #zIn .ic { width: 16px; height: 16px; margin: 0; vertical-align: 0; }
+      #dockzone {
+        position: fixed;
+        display: none;
+        pointer-events: none;
+        z-index: 100;
+        background: color-mix(in srgb, var(--acc) 22%, transparent);
+        border: 2px solid var(--acc);
+      }
+      #dockzone.z-top {
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 60px;
+      }
+      #dockzone.z-bottom {
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 60px;
+      }
+      #dockzone.z-left {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: var(--bar-w);
+      }
+      #dockzone.z-right {
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: var(--bar-w);
+      }
+
+/* ===== Barra vertical: cuadrícula de 4 columnas con pares de controles por fila ===== */
+#bar.v {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: 6px;
+  row-gap: 6px;
+  align-items: center;
+  align-content: start;
+}
+#bar.v > .sep, #bar.v > #barRight > .sep { grid-column: 1 / -1; }
+#bar.v > #barRight > .sep.sep-h { display: none; }
+/* fila 1: asa ⠿ + icono + MindForge */
+#bar.v #grip { grid-column: 1; justify-self: center; padding: 0; }
+#bar.v .brandrow { grid-column: 2 / 5; min-width: 0; }
+#bar.v .boardtitle { grid-column: 1 / -1; }
+/* fila: espacios de trabajo + rueda de color */
+#bar.v #dropWs { grid-column: 1 / 4; min-width: 0; }
+#bar.v #wheelBtn.btn { grid-column: 4; width: 100%; justify-self: stretch; min-width: 0; }
+/* muestras: el botón de ver más ocupa todo el ancho */
+#bar.v #swGrp { grid-column: 1 / -1; }
+#bar.v #swToggle { flex: 1 1 100%; width: 100%; }
+/* fila: borrar nodos + idioma · fila: tema + zoom */
+#bar.v #grpClear, #bar.v #grpTheme { display: contents; }
+#bar.v #clearBtn, #bar.v #zoomBtn { grid-column: span 1; width: 100%; min-width: 0; }
+#bar.v #langBtn { grid-column: span 2; width: 100%; }
+#bar.v #themeBtn { grid-column: 1; width: 100%; min-width: 0; }
+#bar.v .grp.zm { grid-column: 2 / 5; min-width: 0; flex-wrap: nowrap; gap: 4px; }
+#bar.v .grp.zm #zOut, #bar.v .grp.zm #zIn { flex: 1 1 0; min-width: 0; }
+#bar.v .grp.zm #zl { flex: 1.3 1 0; min-width: 0; font-size: calc(13px * var(--ui)); }
+#bar.v { grid-auto-flow: row dense; }
+#bar.v .brandrow { gap: 3px; }
+#bar.v .brand { font-size: calc(13px * var(--ui)); letter-spacing: 0; }
+#bar.v .grp.zm { align-items: center; }
+#bar.v .grp.zm #zl { align-self: center; box-sizing: border-box; height: 32px; padding: 0; line-height: normal; display: inline-flex; align-items: center; justify-content: center; }

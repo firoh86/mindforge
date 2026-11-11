@@ -1,0 +1,177 @@
+/* ---------- Rueda de color y atajos ---------- */
+#wheel {
+  position: fixed;
+  left: calc(50% - 150px);
+  top: 90px;
+  width: 300px;
+  z-index: 75;
+  display: none;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  user-select: none;
+}
+#wheel .wh {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--sidebar-border);
+  cursor: move;
+  font-size: calc(13px * var(--ui));
+}
+#wheel .wb {
+  padding: 12px;
+}
+#wheel .wtop {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 6px;
+}
+#wprev {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border);
+  flex: none;
+  margin-top: 2px;
+}
+#wheel .wsl {
+  flex: 1;
+  min-width: 0;
+}
+.wrow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.wrow label {
+  width: 12px;
+  font-size: calc(12px * var(--ui));
+}
+.wrow span {
+  width: 12px;
+  font-size: calc(12px * var(--ui));
+  color: var(--muted-foreground);
+}
+.wrow input[type="number"] {
+  width: 52px;
+  background: var(--background);
+  border: 1px solid var(--sidebar-border);
+  border-radius: var(--r);
+  padding: 3px 4px;
+  margin: 0;
+}
+.wrow input[type="text"] {
+  flex: 1;
+  background: var(--background);
+  border: 1px solid var(--sidebar-border);
+  border-radius: var(--r);
+  padding: 5px 8px;
+}
+.wrow .btn {
+  height: 30px;
+  flex: none;
+  padding: 0 10px;
+}
+#wBar {
+  width: 34px;
+  padding: 0;
+  font-size: calc(16px * var(--ui));
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+input.gr {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1;
+  min-width: 0;
+  height: 10px;
+  margin: 0;
+  border: 1px solid var(--sidebar-border);
+  border-radius: 2px;
+  background: #888;
+}
+input.gr::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 9px;
+  height: 16px;
+  background: #fff;
+  border: 1px solid #222;
+  border-radius: 2px;
+  cursor: pointer;
+}
+input.gr::-moz-range-thumb {
+  width: 9px;
+  height: 16px;
+  background: #fff;
+  border: 1px solid #222;
+  border-radius: 2px;
+  cursor: pointer;
+}
+input.gr.hue {
+  background: linear-gradient(
+    to right,
+    #f00,
+    #ff0,
+    #0f0,
+    #0ff,
+    #00f,
+    #f0f,
+    #f00
+  );
+}
+#wcv {
+  display: block;
+  margin: 8px auto 10px;
+  cursor: crosshair;
+  touch-action: none;
+}
+#keys {
+  position: fixed;
+  width: 310px;
+  z-index: 74;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  user-select: none;
+  animation: keysInR 0.16s ease-out;
+}
+#keys[data-side="l"] {
+  animation-name: keysInL;
+}
+@keyframes keysInR {
+  from {
+    opacity: 0;
+    transform: translateX(-14px);
+  }
+}
+@keyframes keysInL {
+  from {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+}
+.kic { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; vertical-align: -3px; margin-right: 7px; }
+.krow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.krow .btn {
+  width: 140px;
+  height: 30px;
+}
+
+/* ---------- Menús y paneles flotantes: mismo fondo, borde, radio y sombra ---------- */
+.bar-dropdown-menu, #wsMenu, #helpPanel, #menu, #wheel, #keys, #pxinsp, #insp, #pxTip, #palTip, #grpTip,
+#modal .box, #fmt, #cropbar, #expMenu, #expCrop .ecbar {
+  background: var(--float-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  box-shadow: var(--float-shadow);
+}
+#toast { box-shadow: var(--float-shadow); }

@@ -1,0 +1,67 @@
+/* ===== Tema "Notebook" (claro / oscuro) + color de acento propio ===== */
+:root {
+  --ui: 1.12; /* escala de la fuente de la interfaz (barra, menús, paneles, ayuda); no afecta al contenido de los nodos */
+  color-scheme: light;
+  --card: rgba(255, 255, 255, 1);
+  --muted: #e3e3e3;
+  --border: #747272;
+  --sidebar: #f0f0f0;
+  --sidebar-border: #c0c0c0;
+  --background: hsl(0, 0%, 70%);
+  --foreground: #3a3a3a;
+  --muted-foreground: #505050;
+  --secondary: #dedede;
+  --primary: #606060;
+  --destructive: #c87a7a;
+  --edge: #606060;
+  --dot: #cdcdcd;
+  --r: 3px;
+  /* diseño común de todos los menús / paneles flotantes */
+  --float-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  --float-bg: linear-gradient(var(--card), var(--card)), var(--background);
+  --bar-w: 184px;
+  --font-ui:
+    "Architects Daughter", "Segoe Print", "Comic Sans MS", sans-serif;
+  --acc: #f56565;
+  --acc-fg: #ffffff;
+}
+html.dark {
+  color-scheme: dark;
+  --card: rgba(51, 51, 51, 1);
+  --muted: #454545;
+  --border: #4f4f4f;
+  --sidebar: #212121;
+  --sidebar-border: #4f4f4f;
+  --background: #2b2b2b;
+  --foreground: #dcdcdc;
+  --muted-foreground: #a0a0a0;
+  --secondary: #5a5a5a;
+  --primary: #b0b0b0;
+  --destructive: #d9afaf;
+  --edge: #b0b0b0;
+  --dot: #3d3d3d;
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-ui);
+  letter-spacing: 0.5px;
+  overflow: hidden;
+}
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+}
+::selection {
+  background: var(--acc);
+  color: var(--acc-fg);
+}

@@ -1,0 +1,229 @@
+/* ---------- Pixel art: cabecero y pie ---------- */
+.ptools {
+  display: none;
+  gap: 2px;
+  margin-left: auto;
+  align-items: center;
+}
+.pixel.act .ptools {
+  display: flex;
+}
+.ptools button {
+  width: 26px;
+  height: 26px;
+  padding: 4px;
+  border: 1px solid transparent;
+  background: none;
+  border-radius: var(--r);
+  cursor: pointer;
+  color: inherit;
+  line-height: 0;
+}
+.ptools button:hover {
+  border-color: var(--acc);
+}
+.ptools button.on {
+  background: var(--acc);
+  color: var(--acc-fg);
+}
+.ptools svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.pfoot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px;
+  font-size: 11.5px;
+  color: var(--muted-foreground);
+  border-top: 1px solid var(--sidebar-border);
+}
+.pfoot .pinfo {
+  flex: 1;
+}
+.pfoot .psl {
+  display: none;
+  flex: 1;
+  min-width: 0;
+  align-items: center;
+  gap: 6px;
+}
+.pixel.act .pfoot .psl {
+  display: flex;
+}
+.pixel.act .pfoot .pinfo {
+  display: none;
+}
+.pfoot input[type="range"] {
+  flex: 1;
+  margin: 0;
+  min-width: 0;
+}
+.pfoot b {
+  min-width: 18px;
+  text-align: right;
+  color: var(--foreground);
+}
+.phead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.phead h4 {
+  margin: 0;
+}
+.phead .btn {
+  padding: 2px 7px;
+  font-size: calc(13px * var(--ui));
+  line-height: 1.3;
+}
+
+/* cabecero de la tarjeta de pixel art: botones circulares (info + atajos) */
+.pbtns { display: flex; gap: 6px; align-items: center; }
+.pbtns .xbtn svg { width: 13px; height: 13px; stroke-width: 2.2; }
+/* ayuda de herramientas: aparece al dejar el ratón sobre (i) */
+#pxTip {
+  position: fixed; z-index: 500; width: 400px; max-height: calc(100vh - 16px); overflow: hidden; max-width: calc(100vw - 24px);
+  padding: 10px 12px; border-radius: 10px; font-size: calc(11.5px * var(--ui)); line-height: 1.45;
+  background: var(--card-solid, var(--sidebar)); color: var(--foreground);
+  border: 1px solid var(--border); box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+  pointer-events: none; opacity: 0; transition: opacity .15s;
+}
+#pxTip:not([hidden]) { opacity: 1; }
+#pxTip h5 { margin: 0 0 4px; font-size: calc(11px * var(--ui)); text-transform: uppercase; letter-spacing: .5px; opacity: .75; }
+#pxTip ul { margin: 0; padding-left: 16px; }
+#pxTip hr { border: 0; border-top: 1px solid var(--border); margin: 6px 0; }
+#pxTip hr + h5 { margin-top: 0; }
+#pxTip li { margin: 0 0 3px; }
+#palTip, #grpTip {
+  position: fixed; z-index: 500; width: 400px; max-height: calc(100vh - 16px); overflow: hidden; max-width: calc(100vw - 24px);
+  padding: 10px 12px; border-radius: 10px; font-size: calc(11.5px * var(--ui)); line-height: 1.45;
+  background: var(--card-solid, var(--sidebar)); color: var(--foreground);
+  border: 1px solid var(--border); box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+  pointer-events: none; opacity: 0; transition: opacity .15s;
+}
+#palTip:not([hidden]), #grpTip:not([hidden]) { opacity: 1; }
+#palTip h5, #grpTip h5 { margin: 0 0 4px; font-size: calc(11px * var(--ui)); text-transform: uppercase; letter-spacing: .5px; opacity: .75; }
+#palTip ul, #grpTip ul { margin: 0; padding-left: 16px; }
+#palTip hr, #grpTip hr { border: 0; border-top: 1px solid var(--border); margin: 6px 0; }
+#palTip hr + h5, #grpTip hr + h5 { margin-top: 0; }
+#palTip li, #grpTip li { margin: 0 0 3px; }
+
+/* punta del pincel (cuadrada / circular) */
+.pfoot .ptip { flex: none; display: flex; gap: 0; margin-left: 0; }
+.pfoot .ptip button {
+  width: 24px; height: 24px; padding: 2px; box-sizing: border-box; line-height: 0;
+  border: none; background: none; color: var(--acc); cursor: pointer;
+}
+.pfoot .ptip button:hover { filter: brightness(1.15); }
+.pfoot .ptip svg { width: 100%; height: 100%; fill: currentColor; stroke: none; pointer-events: none; }
+/* fondo del nodo: sólido o translúcido (40 %) para calcar */
+/* el fondo translúcido solo afecta a la zona del lienzo: cabecero y pie conservan el fondo sólido.
+   Sólido: el nodo entero lleva el fondo (sin costuras entre cabecero, lienzo y pie).
+   Translúcido: el fondo sólido queda solo en dos franjas (cabecero 64 px / pie 32 px) y el lienzo es translúcido. */
+.node.pixel { background: var(--float-bg); }
+.node.pixel.ghost {
+  background:
+    linear-gradient(var(--card), var(--card)) 0 0 / 100% 64px no-repeat,
+    linear-gradient(var(--card), var(--card)) 0 100% / 100% 32px no-repeat;
+}
+.node.pixel .chead.phd, .node.pixel .pfoot { background: none; border-radius: 0; }
+/* las dos líneas que delimitan el lienzo son idénticas */
+.node.pixel .chead.phd { border-bottom: 1px solid var(--sidebar-border); }
+.node.pixel .pxwrap { background: none; }
+.node.pixel.ghost .pxwrap { background: color-mix(in srgb, var(--card) 40%, transparent); }
+.pbgb {
+  display: none; flex: none; width: 24px; height: 26px; padding: 0; margin-left: 2px;
+  border: none; background: none; cursor: pointer; align-items: center; justify-content: center;
+}
+.pixel.act .pbgb { display: flex; }
+.pbgb i {
+  display: block; width: 14px; height: 14px; box-sizing: border-box; border-radius: 50%;
+  border: 2px solid var(--foreground); background: transparent; pointer-events: none;
+}
+.pbgb.on i { background: var(--foreground); } /* fondo sólido: círculo relleno */
+.pbgb:hover i { border-color: var(--acc); }
+.pbgb.on:hover i { background: var(--acc); } /* color de acento solo al pasar el ratón */
+
+/* borde de la punta (vista previa) */
+.pxwrap > svg.pxcur { inset: auto; display: none; pointer-events: none; overflow: visible; z-index: 3; }
+.pxcur path { fill: none; stroke-linecap: square; vector-effect: non-scaling-stroke; }
+.pxcur .o { stroke: rgba(0, 0, 0, 0.75); stroke-width: 3px; }
+.pxcur .i { stroke: #fff; stroke-width: 1.2px; }
+
+/* cabecero de dos filas: título + fondo + tile / herramientas alineadas a la derecha */
+.pixel .chead.phd { height: 64px; flex-direction: column; align-items: stretch; gap: 0; padding: 0 8px 0 10px; }
+.phd .prow1 { height: 34px; display: flex; align-items: center; gap: 4px; min-width: 0; }
+.phd .prow1 .ttl { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.phd .ptools { height: 30px; justify-content: flex-end; margin-left: 0; }
+.ptile, .pgrid {
+  display: none; flex: none; width: 26px; height: 26px; padding: 4px; box-sizing: border-box;
+  border: 1px solid transparent; background: none; border-radius: var(--r);
+  color: inherit; line-height: 0; cursor: pointer;
+}
+.pixel.act .ptile, .pixel.act .pgrid { display: block; }
+.ptile:hover, .pgrid:hover { border-color: var(--acc); }
+.ptile.on, .pgrid.on { background: var(--acc); color: var(--acc-fg); }
+.ptile svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 2; pointer-events: none; }
+.pgrid svg { width: 100%; height: 100%; fill: currentColor; stroke: none; pointer-events: none; }
+
+/* modo tile: 8 píxeles repetidos alrededor del lienzo, con degradado hasta 0 */
+.pxwrap > canvas.pxtile, .pxwrap > .pxedge { display: none; pointer-events: none; }
+.pixel.tile .pxwrap > canvas.pxtile { display: block; }
+.pixel { --tb: 1; }
+.pixel.ghost { --tb: 0.4; }
+.pixel.tile .pxwrap > .pxbg,
+.pixel.tile .pxwrap > .pxc,
+.pixel.tile .pxwrap > .pxov,
+.pxwrap > .pxedge {
+  inset: auto;
+  left: calc(800% / (var(--pw, 16) + 16));
+  top: calc(800% / (var(--ph, 16) + 16));
+  width: calc(100% * var(--pw, 16) / (var(--pw, 16) + 16));
+  height: calc(100% * var(--ph, 16) / (var(--ph, 16) + 16));
+}
+.pixel.tile .pxwrap > .pxedge {
+  display: block; box-sizing: border-box; z-index: 2;
+  border: 2px solid color-mix(in srgb, var(--foreground) 75%, transparent);
+}
+.pixel.tile .pxwrap > .pxgrid {
+  --mx: calc(800% / (var(--pw, 16) + 16));
+  --my: calc(800% / (var(--ph, 16) + 16));
+  background-size: calc(100% / (var(--pw, 16) + 16)) calc(100% / (var(--ph, 16) + 16));
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0, rgba(0,0,0,var(--tb)) var(--mx), #000 var(--mx), #000 calc(100% - var(--mx)), rgba(0,0,0,var(--tb)) calc(100% - var(--mx)), transparent 100%),
+    linear-gradient(to bottom, transparent 0, rgba(0,0,0,var(--tb)) var(--my), #000 var(--my), #000 calc(100% - var(--my)), rgba(0,0,0,var(--tb)) calc(100% - var(--my)), transparent 100%);
+  mask-image:
+    linear-gradient(to right, transparent 0, rgba(0,0,0,var(--tb)) var(--mx), #000 var(--mx), #000 calc(100% - var(--mx)), rgba(0,0,0,var(--tb)) calc(100% - var(--mx)), transparent 100%),
+    linear-gradient(to bottom, transparent 0, rgba(0,0,0,var(--tb)) var(--my), #000 var(--my), #000 calc(100% - var(--my)), rgba(0,0,0,var(--tb)) calc(100% - var(--my)), transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+.ptools button:focus, .ptip button:focus, .ptile:focus, .pgrid:focus, .pbgb:focus { outline: none; }
+
+/* pixel art fuera de foco: compacto (cabecero de una fila con título y medidas, sin pie) */
+.pixel:not(.act) .chead.phd { height: 40px; }
+.pixel:not(.act) .phd .prow1 { height: 40px; }
+.pixel:not(.act) .phd .ptools { display: none; }
+.pixel:not(.act) .pfoot { display: none; }
+.pixel:not(.act) .pxwrap { top: 40px; bottom: 0; }
+.phd .prow1 .pinfo { flex: none; font-size: 11.5px; color: var(--muted-foreground); white-space: nowrap; }
+.pixel.act .phd .prow1 .pinfo { display: none; }
+
+/* fondo translúcido con el nodo fuera de foco: el cabecero mide 40 px y no hay pie, así que la franja sólida
+   también se reduce (si no, quedan dos bandas blancas de 24 y 32 px sobre y bajo el lienzo) */
+.node.pixel.ghost:not(.act) {
+  background: linear-gradient(var(--card), var(--card)) 0 0 / 100% 40px no-repeat;
+}

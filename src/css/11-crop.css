@@ -1,0 +1,114 @@
+/* ---------- Recorte de imagen ---------- */
+.cropper {
+  position: absolute;
+  z-index: 8;
+}
+.cropper .cfull {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.35;
+  pointer-events: none;
+  display: block;
+}
+.cropper,
+.cropper * {
+  user-select: none;
+  -webkit-user-select: none;
+}
+.cropper ::selection {
+  background: transparent;
+}
+.cropper .cshade {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--acc) 38%, transparent);
+  pointer-events: none;
+}
+.cropper .cbox {
+  position: absolute;
+  outline: calc(2px * var(--iz)) solid var(--acc);
+  cursor: move;
+}
+.cropper .cclip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.cropper .cclip img {
+  position: absolute;
+  max-width: none;
+  display: block;
+  pointer-events: none;
+}
+.chd {
+  position: absolute;
+  width: calc(11px * var(--iz));
+  height: calc(11px * var(--iz));
+  background: #fff;
+  border: calc(2px * var(--iz)) solid var(--acc);
+  transform: translate(-50%, -50%);
+}
+.chd.nw {
+  left: 0;
+  top: 0;
+  cursor: nwse-resize;
+}
+.chd.n {
+  left: 50%;
+  top: 0;
+  cursor: ns-resize;
+}
+.chd.ne {
+  left: 100%;
+  top: 0;
+  cursor: nesw-resize;
+}
+.chd.e {
+  left: 100%;
+  top: 50%;
+  cursor: ew-resize;
+}
+.chd.se {
+  left: 100%;
+  top: 100%;
+  cursor: nwse-resize;
+}
+.chd.s {
+  left: 50%;
+  top: 100%;
+  cursor: ns-resize;
+}
+.chd.sw {
+  left: 0;
+  top: 100%;
+  cursor: nesw-resize;
+}
+.chd.w {
+  left: 0;
+  top: 50%;
+  cursor: ew-resize;
+}
+#cropbar {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 31;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 6px 10px;
+  font-size: calc(12.5px * var(--ui));
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.12);
+}
+#cropbar[hidden] {
+  display: none;
+}
+#cropbar .btn {
+  padding: 4px 12px;
+}

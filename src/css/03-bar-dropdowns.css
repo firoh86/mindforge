@@ -1,0 +1,41 @@
+/* ---------- Desplegables adaptativos de la barra Rubi---------- */
+.bar-dropdown {
+  position: relative;
+  display: none;
+  align-items: center;
+}
+.bar-dropdown-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.bar-dropdown-menu {
+  display: none;
+  position: fixed; /* posición calculada por JS (nunca se sale de la ventana) */
+  top: 0;
+  left: 0;
+  max-width: calc(100vw - 16px);
+  max-height: calc(100vh - 16px);
+  overflow-y: auto;
+  box-sizing: border-box;
+  background: linear-gradient(var(--card), var(--card)), var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  z-index: 50;
+  padding: 8px;
+  min-width: 180px;
+  flex-direction: column;
+  gap: 6px;
+}
+.bar-dropdown.open .bar-dropdown-menu {
+  display: flex;
+  animation: ddIn 0.14s ease-out;
+}
+@keyframes ddIn {
+  from { opacity: 0; transform: translateY(var(--dd-from, -4px)); }
+  to { opacity: 1; transform: none; }
+}
+.bar-dropdown-menu .btn {
+  text-align: left;
+}

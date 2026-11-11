@@ -1,0 +1,158 @@
+/* ---------- Muestras desplegables ---------- */
+.sw-more {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+  max-width: 0;
+  margin-left: -6px; /* compensa el gap del contenedor mientras está plegado */
+  opacity: 0;
+  transition:
+    max-width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    margin-left 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.25s ease;
+}
+.sw-more .sw {
+  flex: none;
+  transform: scale(0.4);
+  transition: transform 0.3s ease;
+}
+.sws-open .sw-more {
+  max-width: var(--sw-more-w, 600px);
+  margin-left: 0;
+  opacity: 1;
+}
+.sws-open .sw-more .sw {
+  transform: none;
+}
+/* el sombreado del swatch activo no se recorta */
+.sw-more {
+  padding: 3px;
+  margin-top: -3px;
+  margin-bottom: -3px;
+}
+#swToggle {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+#swToggle svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.sws-open #swToggle svg {
+  transform: rotate(180deg);
+}
+#swToggle.on svg {
+  stroke: var(--acc-fg);
+}
+/* barra vertical: las muestras extra se despliegan hacia abajo */
+#bar.v #swatches {
+  flex: 1 1 100%;
+}
+#bar.v .sw-more {
+  flex: 1 1 100%;
+  flex-wrap: wrap;
+  max-width: none;
+  max-height: 0;
+  margin-left: 0;
+  transition:
+    max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.25s ease;
+}
+#bar.v .sws-open .sw-more {
+  max-height: 200px;
+}
+#bar.v #swToggle svg {
+  transform: rotate(90deg);
+}
+#bar.v .sws-open #swToggle svg {
+  transform: rotate(-90deg);
+}
+.bar-dropdown-title {
+  font-size: calc(11px * var(--ui));
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--muted-foreground);
+  padding: 2px 4px 4px 4px;
+  border-bottom: 1px solid var(--sidebar-border);
+  margin-bottom: 2px;
+  font-weight: 700;
+}
+
+#dropWs { display: inline-flex; }
+#wsBtn { padding: 5px 8px; }
+#bar.v #dropWs, #bar.v #wsBtn { width: 100%; justify-content: center; }
+#wsMenu { width: 310px; min-width: 310px; transform-origin: top left; }
+#dropWs.open #wsMenu { animation: wsIn 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); }
+@keyframes wsIn {
+  from { opacity: 0; transform: translateY(-8px) scaleY(0.9); }
+  to { opacity: 1; transform: none; }
+}
+#wsMenu .btn .ic { margin-right: 7px; }
+#wsMenu > .btn { display: flex; align-items: center; }
+#wsMenu .wskbd { margin-left: auto; font-size: calc(11px * var(--ui)); opacity: 0.6; }
+#wsList { display: flex; flex-direction: column; gap: 4px; }
+.wsrow { display: flex; align-items: center; gap: 6px; }
+.wsent { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 1px; white-space: normal; padding: 6px 10px; }
+.wsent b { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+.wsent small { font-size: calc(11px * var(--ui)); opacity: 0.7; max-width: 100%; white-space: normal; text-align: left; }
+.wsent small.lost { color: var(--destructive); opacity: 1; }
+.wsrow.cur .wsent { border-color: var(--acc); }
+.wsempty { font-size: calc(12px * var(--ui)); opacity: 0.65; padding: 4px 2px; }
+#bar.no-anim, #bar.no-anim * { transition: none !important; animation: none !important; }
+#swDot { width: 14px; height: 14px; pointer-events: none; flex: none; }
+#bar:not(.v).c-sw #swGrp { display: none !important; }
+#bar:not(.v).c-sw .drop-sw-grp { display: inline-flex !important; }
+.drop-sw-grp .bar-dropdown-menu { width: 196px; min-width: 196px; }
+#swHost #swatches { display: flex; flex-wrap: wrap; gap: 6px; }
+/* dentro del desplegable se ven todas, sin animación de ancho */
+#swHost .sw-more { display: contents; }
+#swHost .sw-more .sw { transform: none; }
+#swHost .sw.mirror { display: none; }
+/* Para el botón Rueda y Centrar en vertical que querías que ocupen todo el ancho */
+#bar.v #wheelBtn {
+  width: 100%;
+}
+
+/* Cuentagotas activo (atajo mantenido): cursor propio en toda la app */
+body.picking,
+body.picking * {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke-linecap='round' stroke-linejoin='round'><g stroke='%23000' stroke-width='4'><path d='M15.5 3.5l5 5-3 3-5-5z'/><path d='M12.5 7.5L4 16v4h4l8.5-8.5'/></g><g stroke='%23fff' stroke-width='2'><path d='M15.5 3.5l5 5-3 3-5-5z'/><path d='M12.5 7.5L4 16v4h4l8.5-8.5'/></g></svg>") 3 21, crosshair !important;
+}
+
+/* Rueda de color: solo el icono, sin fondo de botón; pasa a color de acento cuando la rueda está abierta */
+#wheelBtn.btn, #wheelBtn.btn:hover, #wheelBtn.btn.on {
+  background: none; border-color: transparent; box-shadow: none;
+}
+#wheelBtn.btn:hover { color: var(--acc); }
+#wheelBtn.btn.on { color: var(--acc); }
+
+/* el icono ES el botón: 30 px como el del color de acento, sin caja ni margen interior */
+#wheelBtn.btn { width: 34px; min-width: 34px; height: 34px; padding: 2px; }
+#wheelBtn .wsvg { width: 30px; height: 30px; display: block; pointer-events: none; }
+#bar.v #wheelBtn.btn { width: 100%; }
+
+/* separador entre muestras de fábrica y propias (mismo estilo que el de los grupos de la barra) */
+.sw-sep { flex: none; width: 1px; height: 26px; background: var(--sidebar-border); margin: 0 2px; }
+#bar.v .sw-sep { flex: 1 1 100%; width: auto; height: 1px; margin: 2px 0; }
+#swHost .sw-sep { flex: 1 1 100%; width: auto; height: 1px; margin: 2px 0; }
+
+/* Zoom general (ojo): solo el icono, como la rueda de color; acento cuando está al 125 % */
+#zoomBtn.btn, #zoomBtn.btn:hover, #zoomBtn.btn.on { background: none; border-color: transparent; box-shadow: none; }
+#zoomBtn.btn:hover { color: var(--acc); }
+#zoomBtn.btn.on { color: var(--acc); }
+#zoomBtn.btn { width: 34px; min-width: 34px; height: 34px; padding: 2px; }
+#zoomBtn .ic { width: 28px; height: 28px; pointer-events: none; }
+#bar.v #zoomBtn.btn { width: 100%; }
