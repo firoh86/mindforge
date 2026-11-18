@@ -63,16 +63,3 @@ $("#themeBtn").onclick = () => {
   saveUI();
   syncThemeBtn();
 };
-let footT;
-$("#foot").addEventListener("click", async () => {
-  await copyText("firohh.as@gmail.com");
-  const f = $("#foot"),
-    old = "firohh.as@gmail.com";
-  f.textContent = "¡Copiado!";
-  f.classList.add("ok");
-  clearTimeout(footT);
-  footT = setTimeout(() => {
-    f.textContent = old;
-    f.classList.remove("ok");
-  }, 1300);
-});

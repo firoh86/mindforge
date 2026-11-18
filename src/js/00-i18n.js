@@ -44,8 +44,6 @@ const EN = {
   "Grosor de las flechas": "Arrow thickness",
   "Historial de cambios": "Change history",
   "Ayuda": "Help",
-  "Clic para copiar": "Click to copy",
-  "¡Copiado!": "Copied!",
 
   /* Ayuda (HTML completo por elemento) */
   "Crear y editar": "Create and edit",
